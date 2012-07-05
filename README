@@ -1,5 +1,5 @@
-With version 1.000_000
-======================
+With version 1.01
+=================
 
 This package introduces a topicalizer function, called C<with>. The function
 complements such Perl built-ins as C<map>, C<grep> and C<sort>.

@@ -9,7 +9,7 @@ package With;
 
 BEGIN {
     $With::AUTHORITY = 'cpan:CPANIC';
-    $With::VERSION   = '1.000_000';
+    $With::VERSION   = '1.01';
     $With::VERSION   = eval $With::VERSION;
 }
 
@@ -39,7 +39,7 @@ sub with (&;@) {
     local($has_yielded, $topic) = (0, shift);
     local($callbacks) = Params::Callbacks->extract(@_);
     my @result = $topic->();
- 	return @result if $has_yielded; 
+    return @result if $has_yielded; 
     return $callbacks->yield(@result);
 }
 
@@ -137,7 +137,7 @@ The list function introduces a callback that consumes an entire result set
 in C<@_>.
 
     @result = with {
-		@result_out;
+        @result_out;
     } list {
         @result_in = @_;
         ...
@@ -158,20 +158,20 @@ Use in place of C<list> when you want to introduce a callback that consumes
 an result set one item at a time, or a callback that works on a scalar 
 result in C<$_> or $_[0]. 
 
-	@result = with {
-		@result_out;
+    @result = with {
+        @result_out;
     } item {
         $result_in = shift;
         ...
-		$resul_out;
+        $resul_out;
     } item {
         $result_in = shift;
         ...
-		$resul_out;
+        $result_out;
     } item {
         $result_in = shift;
         ...
-		$resul_out;
+        $result_out;
     };
  
 Results processed using the C<item> blocks are always gathered up into a list
