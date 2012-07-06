@@ -1,9 +1,6 @@
-Revision history for Perl extension With.
+Revision history for Perl extension Topicalizer::Block.
 
-1.000_000  Wed Jul  4 20:51:20 2012
-    - original version; created by h2xs 1.23 with options
-        -X -b 5.8.4 -v1.000_000 -n With
-1.01 Wed Jul  4 23:59:22 2012
-    - original version; created by h2xs 1.23 with options
-        -X -b 5.8.4 -v1.01 -n With
+1.00  Fri Jul  6 19:32:00 2012
+	- original version; created by h2xs 1.23 with options
+		-X -b 5.8.4 -v1.00 -n Topicalizer::Block
 

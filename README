@@ -1,8 +1,10 @@
-With version 1.01
-=================
+Topicalizer-Block version 1.00
+==============================
 
-This package introduces a topicalizer function, called C<with>. The function
-complements such Perl built-ins as C<map>, C<grep> and C<sort>.
+Topicalizer function ("block") built around Params::Callbacks.
+
+Execute a block of statements to arrive at a result that can be processed by 
+the listed callbacks.
 
 INSTALLATION
 
@@ -23,8 +25,10 @@ COPYRIGHT AND LICENCE
 
 Put the correct copyright and licence information here.
 
-Copyright (C) 2012 by Iain Campbell.
+Copyright (C) 2012 by Iain Campbell
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.14.2 or,
 at your option, any later version of Perl 5 you may have available.
+
+

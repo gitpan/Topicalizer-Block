@@ -1,4 +1,4 @@
-package With;
+package Topicalizer::Block;
 
 # Copyright (c) 2012 Iain Campbell. All rights reserved.
 #
@@ -8,9 +8,9 @@ package With;
 # listing the modifications you have made.
 
 BEGIN {
-    $With::AUTHORITY = 'cpan:CPANIC';
-    $With::VERSION   = '1.01';
-    $With::VERSION   = eval $With::VERSION;
+    $Topicalizer::Block::AUTHORITY = 'cpan:CPANIC';
+    $Topicalizer::Block::VERSION   = '1.00';
+    $Topicalizer::Block::VERSION   = eval $Topicalizer::Block::VERSION;
 }
 
 use 5.008_004;
@@ -22,7 +22,7 @@ require Exporter;
 
 our @ISA = qw/Exporter/;
 
-our @EXPORT_OK = qw/with yield list item/;
+our @EXPORT_OK = qw/block yield list item/;
 
 our %EXPORT_TAGS = (
     all => [ @EXPORT_OK ]
@@ -32,9 +32,9 @@ our $callbacks;
 our $has_yielded;
 our $topic;
 
-# RESULT = with { STATEMENT(S) } LIST;
+# RESULT = block { STATEMENT(S) } LIST;
 
-sub with (&;@) {
+sub block (&;@) {
     local $_;
     local($has_yielded, $topic) = (0, shift);
     local($callbacks) = Params::Callbacks->extract(@_);
@@ -58,15 +58,15 @@ __END__
 
 =head1 NAME
 
-With - Topicalizer built around Params::Callbacks
+Topicalizer::Block - Topicalizer built around Params::Callbacks
 
 =head1 SYNOPSIS
 
-    use With qw/:all/;
+    use Topicalizer::Block qw/:all/;
 
-    # Give me odd numbers between 1 and 10, along with some witty banter
+    # Give me odd numbers between 1 and 10, along block some witty banter
 
-    my @odds = with { 1..10 } item { 
+    my @odds = block { 1..10 } item { 
         $_ % 2 ? $_ : (); 
     } item { 
         printf "%2d\n", $_; 
@@ -78,8 +78,8 @@ With - Topicalizer built around Params::Callbacks
 
     # Ask for numbers, tell me about the odd ones
 
-    with {
-        with {
+    block {
+        block {
             my @set;
 
             print "Enter some numbers, or just Enter to stop\n\n"; 
@@ -105,28 +105,28 @@ With - Topicalizer built around Params::Callbacks
 
 =head1 DESCRIPTION
 
-This package introduces a topicalizer function, called C<with>. The function
+This package introduces a topicalizer function, called C<block>. The function
 complements such Perl built-ins as C<map>, C<grep> and C<sort>.
 
 =over 5
 
-=item B<RESULT = with STATEMENT-BLOCK CALLBACK-LIST;>
+=item B<RESULT = block STATEMENT-BLOCK CALLBACK-LIST;>
 
 Execute a block of statements to arrive at a result that can be processed by 
 the listed callbacks.
 
 =item B<RESULT = yield LIST;>
 
-Normally, the result of the C<with> block is yielded automatically once the 
+Normally, the result of the C<block> is yielded automatically once the 
 block terminates, or once you use the C<return> statement. That is, your
 result is yielded to the callback queue for processing before being delivered
 to the caller.
 
 But what about those situations in which you would like to yield result to
-the callback queue, returning the processed result back to the C<with> block?
+the callback queue, returning the processed result back to the C<block> block?
 
 The C<yield> function despatches its arguments immediately to the callback 
-queue, returning whatever comes out of the other end. The C<with> block's
+queue, returning whatever comes out of the other end. The C<block>'s
 execution then continues.
 
 Yielding early, cancels automatic dispatch to the callback queue.
@@ -136,7 +136,7 @@ Yielding early, cancels automatic dispatch to the callback queue.
 The list function introduces a callback that consumes an entire result set 
 in C<@_>.
 
-    @result = with {
+    @result = block {
         @result_out;
     } list {
         @result_in = @_;
@@ -158,7 +158,7 @@ Use in place of C<list> when you want to introduce a callback that consumes
 an result set one item at a time, or a callback that works on a scalar 
 result in C<$_> or $_[0]. 
 
-    @result = with {
+    @result = block {
         @result_out;
     } item {
         $result_in = shift;
@@ -190,7 +190,7 @@ None.
 
 =over 5 
 
-=item with, yield, list, item
+=item block, yield, list, item
 
 =back 
 
@@ -204,10 +204,9 @@ Everything in @EXPORT_OK.
 
 =back 
 
-=head1 BUGS AND FEATURE REQUESTS
+=head1 BUGS REPORTS
 
-Too many features; not enough bugs? Just drop me a line and I'll see what
-I can do to help.  
+Please report any bugs to L<http://rt.cpan.org/>
 
 =head1 AUTHOR
 
